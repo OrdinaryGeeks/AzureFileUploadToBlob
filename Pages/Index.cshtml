@@ -1,0 +1,38 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+
+<div class="text-center">
+    If you have a file with new line delimited entries featuring a . separating a question, answer, point total, and category then upload it to have it added to the quiz bowl questions,answers by the hourly azure function
+    Example:  
+    <p>Who is the man with the plan got all the power in his hands. Shaft. 300. Hollywood</p>
+    <p>Who is the cohost with Pat Sajak on Wheel of Fortune. Vanna White. 200. Hollywood</p>
+    <p>This will create two entries in the quiz bowl question bank. Duplicates are not allowed and will update the blob if it has not already been processed</p>
+
+</div>
+
+@{
+    if (!Model.isValid)
+    {
+        <div>The last file was not added because it was not valid</div>
+    }
+    if(Model.processing)
+    {
+        <div>Processing</div>
+    }
+}
+
+<form asp-page-handler="downloadfile" method="post" enctype="multipart/form-data">
+    
+
+    <input type="file" name="uploadedFile" />
+    <button type="submit">Submit</button>
+</form>
